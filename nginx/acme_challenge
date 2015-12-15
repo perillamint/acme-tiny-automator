@@ -1,0 +1,8 @@
+location /.well-known/acme-challenge/ {
+    alias /var/www/challenges/;
+    try_files $uri =404;
+}
+
+location / {
+    rewrite ^ https://$server_name$request_uri? permanent;
+}
