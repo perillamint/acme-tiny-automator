@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ACME_TINY_SCRIPT="/root/acme-tiny/acme_tiny.py"
+ACME_TINY_SCRIPT="acme-tiny/acme_tiny.py"
 
 TEMP=$(getopt -o "o:" --long account-key:,acme-dir:,csr: -n 'getcert.sh' -- "$@")
 eval set -- "$TEMP"
