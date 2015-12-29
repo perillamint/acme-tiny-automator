@@ -45,3 +45,6 @@ CSR=$LETSENCRYPT_AUTO_DIR"/csrs/"$DOMAIN".csr"
 
 openssl genrsa 4096 > $PRIVKEY
 openssl req -new -sha256 -key $PRIVKEY -subj "/CN="$DOMAIN > $CSR
+
+# Set permission
+chmod 640 $PRIVKEY
