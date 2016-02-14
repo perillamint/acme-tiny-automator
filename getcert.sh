@@ -5,7 +5,7 @@ AUTO_DIR="/etc/letsencrypt-auto/"
 ACME_DIR="/var/www/challenges"
 ACCOUNT_KEY=$AUTO_DIR"/account.key"
 
-TEMP=$(getopt -o "o:" --long account-key:,acme-dir:,csr: -n 'getcert.sh' -- "$@")
+TEMP=$(getopt -o "o:" --long account-key:,acme-dir:,fqdn:,csr: -n 'getcert.sh' -- "$@")
 eval set -- "$TEMP"
 
 while true
@@ -29,7 +29,7 @@ done
 if [ $FQDN ]
 then
     CSR_FILE=$AUTO_DIR"/csrs/"$FQDN".csr"
-    OUTPUT_FILE="/certs/"$FQDN"/cert.pem"
+    OUTPUT_FILE=$AUTO_DIR"/certs/"$FQDN"/cert.pem"
 fi
 
 if [ ! -f $ACCOUNT_KEY ]
