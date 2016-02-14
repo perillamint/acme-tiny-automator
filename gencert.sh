@@ -1,6 +1,9 @@
 #!/bin/bash
 
 ACME_TINY_SCRIPT="acme-tiny/acme_tiny.py"
+AUTO_DIR="/etc/letsencrypt-auto/"
+ACME_DIR="/var/www/challenges"
+ACCOUNT_KEY=$AUTO_DIR"/account.key"
 
 TEMP=$(getopt -o "o:" --long account-key:,acme-dir:,csr: -n 'getcert.sh' -- "$@")
 eval set -- "$TEMP"
@@ -12,6 +15,8 @@ do
             ACCOUNT_KEY=$2; shift 2;;
         --acme-dir)
             ACME_DIR=$2; shift 2;;
+        --fqdn)
+            FQDN=$2; shift 2;;
         --csr)
             CSR_FILE=$2; shift 2;;
         -o)
@@ -20,6 +25,12 @@ do
         *) echo "Error! Cannot parse options!"; exit 1;;
     esac
 done
+
+if [ $FQDN ]
+then
+    CSR_FILE=$AUTO_DIR"/csrs/"$FQDN".csr"
+    OUTPUT_FILE="/certs/"$FQDN"/cert.pem"
+fi
 
 if [ ! -f $ACCOUNT_KEY ]
 then
