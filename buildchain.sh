@@ -31,7 +31,12 @@ curl https://letsencrypt.org/certs/lets-encrypt-x1-cross-signed.pem > $INTERMEDI
 for domain in $(cat $DOMAIN_LIST)
 do
     CERT=$LETSENCRYPT_AUTO_DIR"/certs/"$domain"/cert.pem"
+    PRIVKEY=$LETSENCRYPT_AUTO_DIR"/certs/"$domain"/privkey.pem"
     FULLCHAIN=$LETSENCRYPT_AUTO_DIR"/certs/"$domain"/fullchain.pem"
+    FULLCHAINWITHKEY=$LETSENCRYPT_AUTO_DIR"/certs/"$domain"/fullchainwithkey.pem"
 
     cat $CERT $INTERMEDIATE_CHAIN > $FULLCHAIN
+    cat $PRIVKEY $CERT $INTERMEDIATE_CHAIN > $FULLCHAINWITHKEY
+
+    chmod 640 $FULLCHAINWITHKEY
 done
