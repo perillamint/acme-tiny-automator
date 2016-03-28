@@ -26,7 +26,7 @@ fi
 DOMAIN_LIST=$LETSENCRYPT_AUTO_DIR"/domains.txt"
 INTERMEDIATE_CHAIN=$LETSENCRYPT_AUTO_DIR"/intermediate.pem"
 
-curl https://letsencrypt.org/certs/lets-encrypt-x1-cross-signed.pem > $INTERMEDIATE_CHAIN
+curl https://letsencrypt.org/certs/lets-encrypt-x3-cross-signed.pem > $INTERMEDIATE_CHAIN
 
 for domain in $(cat $DOMAIN_LIST)
 do
