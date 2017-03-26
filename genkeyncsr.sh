@@ -2,13 +2,13 @@
 
 LETSENCRYPT_AUTO_DIR=/etc/letsencrypt-auto
 
-TEMP=$(getopt -o "" --long domain:,confdir: -n 'genkeyncsr.sh' -- "$@")
+TEMP=$(getopt -o "" --long fqdn:,confdir: -n 'genkeyncsr.sh' -- "$@")
 eval set -- "$TEMP"
 
 while true
 do
     case "$1" in
-        --domain)
+        --fqdn)
             DOMAIN=$2; shift 2;;
         --confdir)
             LETSENCRYPT_AUTO_DIR=$2; shift 2;;
