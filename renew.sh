@@ -3,7 +3,7 @@
 LETSENCRYPT_AUTO_DIR=/etc/letsencrypt-auto
 ACME_DIR=/var/www/challenges
 
-TEMP=$(getopt -o "" --long confdir:,domain:,acme-dir: -n 'renew.sh' -- "$@")
+TEMP=$(getopt -o "" --long confdir:,fqdn:,acme-dir: -n 'renew.sh' -- "$@")
 eval set -- "$TEMP"
 
 while true
@@ -11,7 +11,7 @@ do
     case "$1" in
         --confdir)
             LETSENCRYPT_AUTO_DIR=$2; shift 2;;
-        --domain)
+        --fqdn)
             DOMAIN=$2; shift 2;;
         --acme-dir)
             ACME_DIR=$2; shift 2;;

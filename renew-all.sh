@@ -36,5 +36,5 @@ DOMAIN_LIST=$LETSENCRYPT_AUTO_DIR"/domains.txt"
 
 for domain in $(cat $DOMAIN_LIST)
 do
-    ./renew.sh --domain $domain --acme-dir=$ACME_DIR
+    ./renew.sh --fqdn $domain --acme-dir=$ACME_DIR
 done
